@@ -49,6 +49,9 @@ typedef enum {
   JSGRAPHICSFLAGS_COLOR_GRB = JSGRAPHICSFLAGS_COLOR_BASE*4, //< All devices: color order is GRB
   JSGRAPHICSFLAGS_COLOR_RBG = JSGRAPHICSFLAGS_COLOR_BASE*5, //< All devices: color order is RBG
   JSGRAPHICSFLAGS_COLOR_MASK = JSGRAPHICSFLAGS_COLOR_BASE*7, //< All devices: color order is BRG
+
+  /// If any bits in this mark are set, pixel data is not laid out linearly
+  JSGRAPHICSFLAGS_NONLINEAR = JSGRAPHICSFLAGS_ARRAYBUFFER_ZIGZAG|JSGRAPHICSFLAGS_ARRAYBUFFER_VERTICAL_BYTE|JSGRAPHICSFLAGS_ARRAYBUFFER_INTERLEAVEX
 } JsGraphicsFlags;
 
 typedef enum {
@@ -117,6 +120,8 @@ void graphicsSetVar(JsGraphics *gfx);
 size_t graphicsGetMemoryRequired(const JsGraphics *gfx);
 // If graphics is flipped or rotated then the coordinates need modifying
 void graphicsToDeviceCoordinates(const JsGraphics *gfx, int *x, int *y);
+unsigned short graphicsGetWidth(const JsGraphics *gfx);
+unsigned short graphicsGetHeight(const JsGraphics *gfx);
 // drawing functions - all coordinates are in USER coordinates, not DEVICE coordinates
 void         graphicsSetPixel(JsGraphics *gfx, int x, int y, unsigned int col);
 unsigned int graphicsGetPixel(JsGraphics *gfx, int x, int y);
