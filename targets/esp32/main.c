@@ -48,7 +48,7 @@ static void espruinoTask(void *data) {
   SPIChannelsInit();
   initADC(1);
   jshInit();     // Initialize the hardware
-  heapVars = (esp_get_free_heap_size() - 60000) / 16;  //calculate space for jsVars EDIT: Increasing space fo jsVars to allow HTTPS calls
+  heapVars = (esp_get_free_heap_size() - 70000) / 16;  //calculate space for jsVars EDIT: Increasing space fo jsVars to allow HTTPS calls
   heapVars = heapVars - heapVars % 100; //round to 100
   if(heapVars > 20000) heapVars = 20000;  //WROVER boards have much more RAM, so we set a limit
   jsvInit(heapVars);     // Initialize the variables
